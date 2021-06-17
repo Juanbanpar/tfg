@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        <meta http-equiv="Content-Security-Policy" content="
+            default-src
+                'self' 
+                data: gap: 
+                https://ssl.gstatic.com 
+                https://192.168.0.11:5000
+                http://192.168.0.11:5000
+                https://192.168.0.24:5000
+                https://192.168.0.25:5000
+                https://127.0.0.1:5000
+                http://127.0.0.1:5000
+                https://localhost:5000
+                https://cdn.jsdelivr.net
+                http://localhost:5000
+                'unsafe-eval'; 
+            style-src 
+                'self' 
+                'unsafe-inline'; 
+            media-src 
+                *; 
+            img-src 
+                'self' 
+                data: content:;
+        ">
+        
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="css/index.css">
+        <title>Artai</title>
+    </head>
+    <body>
+    
+        <header class="header">
+            <a class="logo">Artai</a>
+            <input class="menu-btn" type="checkbox" id="menu-btn" />
+            <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+            <ul class="menu">
+                <li><a id="a-ambiental">Control ambiental</a></li>
+                <li><a id="a-access">Control de acceso</a></li>
+            </ul>
+        </header>
+    
+        <div id="page-login">
+            
+            <h1>Inicio de sesión</h1>
+            <div class="form">
+                <form id="login-form">
+                    <input type="text" name="ambientalAddress" id="ambientalAddress-field" class="login-form-field" placeholder="ambientalAddress">
+                    <input type="text" name="accessAddress" id="accessAddress-field" class="login-form-field" placeholder="accessAddress">
+                    <input type="text" name="userid" id="userid-field" class="login-form-field" placeholder="userid">
+                    <input type="password" name="password" id="password-field" class="login-form-field" placeholder="password">
+                    <input type="submit" value="Login" id="login-form-submit">
+                </form>
+            </div>
+            
+        </div>
+        
+        <div id="page-main">
+            <div id="always-on">
+                <button class="btnMonitorTab active" id="gauges-button">Medidores</button>
+                <button class="btnMonitorTab" id="graphs-button">Gráficos</button>
+                
+                <div class="quantity">
+                    <p>Frecuencia de refresco (segundos):</p>
+                    <button id="btn-minus1">-</button>
+                    <input class="quantity" id="id_form-1-quantity" min="1" name="form-1-quantity" value="30" type="number">
+                    <button id="btn-add1">+</button>
+                    <button id="btnSet">Aplicar</button>
+                </div>
+
+            </div>
+            
+            <div id="gauges-tab">
+                <h2 id="title-gauges">Sensores:</h2>
+                <ul class="gauges-list" id="sensores">
+                    <li>
+                        <h id="title-gauge">Temperatura:</h>
+                        <div id="temp" class="gauge-container"></div>
+                    </li>
+                    <li>
+                        <h id="title-gauge">Humedad:</h>
+                        <div id="hum" class="gauge-container"></div>
+                    </li>
+                    <li>
+                        <h id="title-gauge">Partículas PM2.5:</h>
+                        <div id="dust" class="gauge-container"></div>
+                    </li>
+                    <li>
+                        <h id="title-gauge">Luminosidad:</h>
+                        <div id="lum" class="gauge-container"></div>
+                    </li>
+                </ul>
+                
+                <h2 id="title-gauges">Actuadores:</h2>
+                <ul class="gauges-list" id="actuadores">
+                    <li>
+                        <h id="title-gauge">Refrigeración:</h>
+                        <div id="ref" class="gauge-container"></div>
+                    </li>
+                    <li>
+                        <h id="title-gauge">Ventilación:</h>
+                        <div id="vent" class="gauge-container"></div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div id="graphs-tab">
+                <h2 id="title-gauges">Sensores:</h2>
+                <ul class="chart-list" id="charts-sensores">
+                    <li>
+                        <div id="chart-temp">
+                        </div>
+                    </li>
+                    <li>
+                        <div id="chart-hum">
+                        </div>
+                    </li>
+                    <li>
+                        <div id="chart-dust">
+                        </div>
+                    </li>
+                    <li>
+                        <div id="chart-lum">
+                        </div>
+                    </li>
+                </ul>
+                
+                <h2 id="title-gauges">Actuadores:</h2>
+                <ul class="chart-list" id="charts-sensores">
+                    <li>
+                        <div id="chart-ref">
+                        </div>
+                    </li>
+                        <div id="chart-vent">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+        
+        <div id="page-access">
+            <div id="always-on">
+                <button class="btnAccessTab active" id="registers-button">Registros</button>
+                <button class="btnAccessTab" id="users-button">Usuarios</button>
+            </div>
+            
+            <div id="registers-tab">
+                <div class="list-top">
+                    <h2 class="title-list">Lista de registros de acceso:</h2>
+                    <button class="refresh-button" id="refresh-registers">Re</button>
+                </div>
+                <div class="container-card">
+                    <div class="seach-container">
+                        <form class="search-box" onsubmit="event.preventDefault();" role="search">
+                            <input type="search" placeholder="Buscar registro" name="search">
+                            <button id="submit-log" type="submit">Go</button>
+                        </form>
+                    </div>
+                    
+                    <nav>
+                        <ul id="registers-list">
+                            
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            
+            <div id="users-tab">
+                <div class="list-top">
+                    <h2 class="title-list">Lista de usuarios:</h2>
+                    <button class="refresh-button" id="refresh-users">Re</button>
+                </div>
+                <div class="container-card">
+                    <div class="seach-container">
+                        <form class="search-box" onsubmit="event.preventDefault();" role="search">
+                            <input type="search" placeholder="Buscar usuario" name="search">
+                            <button id="submit-user" type="submit">Go</button>
+                        </form>
+                    </div>
+                    <nav>
+                        <ul id="users-list">
+                        
+                        </ul>
+                    </nav>
+                </div>
+                
+                <h2 id="title-file">Actualizar reconocimiento facial:</h2>
+                <div class="container-card">
+                    <form id="file-form" enctype="multipart/form-data">
+                        <input id="faces-file" type="file" />
+                        <button type="submit" id="upload-file">Subir</button>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+        
+        <script src="cordova.js"></script>
+        <script src="js/svg-gauge-1.0.5/dist/gauge.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script src="js/index.js"></script>
+    </body>
+</html>
